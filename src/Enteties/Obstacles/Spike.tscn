@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/Treasure Hunters/Pirate Ship/Shooter Traps/Sprites/Totems/Wood Spike/Idle/1.png" type="Texture" id=1]
+[ext_resource path="res://src/Enteties/Obstacles/Spike.gd" type="Script" id=2]
+[ext_resource path="res://assets/Treasure Hunters/Pirate Ship/Shooter Traps/Sprites/Totems/Wood Spike/Destroyed/2.png" type="Texture" id=3]
+[ext_resource path="res://assets/Treasure Hunters/Pirate Ship/Shooter Traps/Sprites/Totems/Wood Spike/Destroyed/1.png" type="Texture" id=4]
+[ext_resource path="res://assets/Treasure Hunters/Pirate Ship/Shooter Traps/Sprites/Totems/Wood Spike/Destroyed/3.png" type="Texture" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 3 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "Hit",
+"speed": 5.0
+} ]
+
+[node name="Spike" type="Area2D"]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource( 2 )
+
+[node name="Spike" type="AnimatedSprite" parent="."]
+position = Vector2( 67.2134, 371.764 )
+rotation = 3.14159
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+position = Vector2( 65.6691, 371.071 )
+rotation = 3.14159
+polygon = PoolVector2Array( 6.66088, -5.07321, -6.75033, -5.07321, -9.74813, -1.60208, -9.59035, 0.764618, -6.59255, 3.9202, 6.66088, 3.9202 )
+[connection signal="body_entered" from="." to="." method="onSpikeHitPlayer"]

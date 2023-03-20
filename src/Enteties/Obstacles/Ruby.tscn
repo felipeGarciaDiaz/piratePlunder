@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/Treasure Hunters/Pirate Treasure/Sprites/Red Diamond/03.png" type="Texture" id=1]
+[ext_resource path="res://assets/Treasure Hunters/Pirate Treasure/Sprites/Red Diamond/01.png" type="Texture" id=2]
+[ext_resource path="res://assets/Treasure Hunters/Pirate Treasure/Sprites/Red Diamond/02.png" type="Texture" id=3]
+[ext_resource path="res://assets/Treasure Hunters/Pirate Treasure/Sprites/Red Diamond/04.png" type="Texture" id=4]
+[ext_resource path="res://src/Enteties/Obstacles/Ruby.gd" type="Script" id=5]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 1 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 6.24753
+
+[node name="Ruby" type="Area2D" groups=[
+"rubies",
+]]
+z_index = 1
+collision_layer = 7
+collision_mask = 7
+script = ExtResource( 5 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 24, 24 )
+frames = SubResource( 1 )
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 23.641, 23.3718 )
+shape = SubResource( 2 )
+
+[node name="spawnRuby" type="Timer" parent="."]
+autostart = true
+[connection signal="body_entered" from="." to="." method="onRubyCollected"]
